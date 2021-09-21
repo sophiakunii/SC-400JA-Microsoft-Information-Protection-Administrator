@@ -18,7 +18,7 @@ Contoso Ltd. のテナントには、「Sales and Marketing」という名前の
 
 5. 「**アカウントを選択**」 ページが表示されたら、「**別のアカウントを使用**」 を選択し、**MOD Administrator** admin@WWLxZZZZZZ.onmicrosoft.com (ZZZZZZ はラボ ホスティング プロバイダーから支給された固有のテナント ID) としてサインインします。  管理者のパスワードは、ラボ ホスティング プロバイダーから支給されます。
 
-6. 左側のナビゲーション ウィンドウから 「**データ分類**」 に移動します。
+6. 左側のナビゲーション ウィンドウから 「**データの分類**」 に移動します。
 
 7. 上部のウィンドウから**トレーニング可能な分類器**を選択します。
 
@@ -26,7 +26,7 @@ Contoso Ltd. のテナントには、「Sales and Marketing」という名前の
 
 9. ブラウザー画面を更新します。
 
-10. ウィンドウの上の部分にバナーがあります。そのメッセージ 「**トレーニング可能な分類器を作成する準備として、組織内のコンテンツの種類を把握するのに役立つ分析を生成するために、コンテンツの場所をスキャン中です。に目を通します。処理が完了するまでに 7 日から 14 日かかります**」
+10. ウィンドウの上の部分にメッセージバナーが表示されていることを確認してください。<br><br> 「**トレーニング可能な分類器を作成する準備として、組織内のコンテンツの種類を把握するのに役立つ分析を生成するために、コンテンツの場所をスキャン中です。に目を通します。処理が完了するまでに 7 日から 14 日かかります**」
 
 11. クライアントを開いたままにしておきます。
 
@@ -63,17 +63,17 @@ Contoso Ltd. のテナントには、「Sales and Marketing」という名前の
 
 12. 次の SharePoint サイトを選択します。
 
-    - **コミュニケーション サイト**
+    - **Communication site**
     - **News @ Contoso**
     - **Contoso Web 1**
-    - **ブランド**
+    - **Brand**
     - **Digital Initiative Public Relations**
     - **Work @ Contoso**
-    - **営業とマーケティング**
+    - **Sales and Marketing**
     - **Contoso Landings**
     - **Mark 8 Project Team**
-    - **人事**
-    - **操作**
+    - **HR**
+    - **Operations**
     - **Retail**
     - **PointPublishing Hub Site**
     - **Team Site**
@@ -111,17 +111,17 @@ Contoso Ltd. のテナントには、「Sales and Marketing」という名前の
 
 7. 次の SharePoint サイトを選択します。
 
-    - **コミュニケーション サイト**
+    - **Communication site**
     - **News @ Contoso**
     - **Contoso Web 1**
-    - **ブランド**
+    - **Brand**
     - **Digital Initiative Public Relations**
     - **Work @ Contoso**
-    - **営業とマーケティング**
+    - **Sales and Marketing**
     - **Contoso Landings**
     - **Mark 8 Project Team**
-    - **人事**
-    - **操作**
+    - **HR**
+    - **Operations**
     - **Retail**
     - **PointPublishing Hub Site**
     - **Team Site**
