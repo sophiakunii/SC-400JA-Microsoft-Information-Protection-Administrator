@@ -15,9 +15,9 @@
 
 3. **コンプライアンス センター**の左側のナビゲーション ペインで「**ポリシー**」を選択し、「**データ**」で「**保持**」を選択します。
 
-4. 「**情報ガバナンス**」ページの「**保持**」タブで、「**+ アイテム保持ポリシーの新規作成**」を選択します。
+4. 「**情報ガバナンス**」ページの「**保持**」タブで、「**+ 新しいアイテム保持ポリシー**」を選択します。
 
-5. 「**保持ポリシーの名前を設定**」ページの「**名前**」と「**説明**」に、次の情報を入力します。
+5. 「**アイテム保持ポリシーに名前を付ける**」ページの「**名前**」と「**説明**」に、次の情報を入力します。
 
 	- 名前: 会社全体
 	- 説明: Teams を除くすべての場所
@@ -26,10 +26,10 @@
 
 7. 「**ポリシーを適用する場所を選択する**」領域で、Exchange メール、SharePoint サイト、OneDrive アカウント、 Microsoft 365 グループが選択されていることを確認し、「**次へ**」を選択します。
 
-8. 「**コンテンツを保持するか、削除するか、またはその両方を行うかを決定しました**」ページで、「**特定の期間のアイテムを保持する**」セクションで、次の情報を入力します。
+8. 「**コンテンツを保持するか、削除するか、または両方を行うかを決定します**」ページで、「**特定の期間アイテムを保持**」セクションで、次の情報を入力します。
 
 	- アイテムを特定の期間保持する: 3 年
-	- **保持期間開始の条件**: アイテムが最後に変更されたとき
+	- **保持期間開始の条件**: アイテムの最終更新日時
 
 9. 「**次へ**」ボタンを選択します。
 
@@ -41,7 +41,7 @@ Exchange メール、Microsoft 365 グループ、OneDrive、SharePoint サイ�
 
 ### タスク 2 – フィルター付きの、場所に基づく保持ポリシーを作成する
 
-ここでは、Teams の場所の保持ポリシーを作成します。Teams のチャネルにはドキュメントを含めることができるで、それらはすべて保持されます。組織では、限られた数のユーザーに Teams のチャットの保持期間を要求することにしました。
+ここでは、Teams の場所の保持ポリシーを作成します。Teams のチャネルにはドキュメントを含めることができるので、それらはすべて保持されます。組織では、限られた数のユーザーに Teams のチャットの保持期間を要求することにしました。
 
 1. Client 1 VM (LON-CL1) には **lon-cl1\admin** アカウントでログインし、Microsoft 365 には **Joni Sherman** としてログインしておく必要があります。 
 
@@ -49,9 +49,9 @@ Exchange メール、Microsoft 365 グループ、OneDrive、SharePoint サイ�
 
 3. **コンプライアンス センター**の左側のナビゲーション ペインで「**ポリシー**」を選択し、「**データ**」で「**保持**」を選択します。
 
-4. 「**情報ガバナンス**」ページの「**保持ポリシー**」タブで、「**+ 保持ポリシーの新規作成**」を選択します。
+4. 「**情報ガバナンス**」ページの「**アイテム保持ポリシー**」タブで、「**+ 新しいアイテム保持ポリシー**」を選択します。
 
-5. 「**保持ポリシーの名前を設定**」ページの「**名前**」と「**説明**」に、次の情報を入力します。
+5. 「**アイテム保持ポリシーに名前を付ける**」ページの「**名前**」と「**説明**」に、次の情報を入力します。
 
 	- **名前**: Teams 保持
 	- **説明**: Teams の場所に対する保持
@@ -69,24 +69,24 @@ Exchange メール、Microsoft 365 グループ、OneDrive、SharePoint サイ�
 	- **Teams のチャネル メッセージ**の場所 – **ステータス**: 有効化 
 	- **Teams のチャット**の場所 – **ステータス**: 有効化
 
-8. Teams のチャットの場所として、「**対象**」列の「**テキスト リンクの編集**」を選択します。
+8. Teams のチャットの場所として、「**含む**」列の「**編集**」を選択します。
 
 9. 「**Teams チャット**」ペインで、次のユーザーを追加します。 
     - Adele Vance
     - Pradeep Gupta
 
-    注: これらの 2 人のユーザーを追加することにより、Teams チャットに含まれる設定が「すべてのチーム」から追加した 2 人のユーザーのみに変更されました。
+    注: これらの 2 人のユーザーを追加することにより、Teams チャットに含まれる設定が「すべてのチーム」から「 2 人のユーザー」のみに変更されました。
 
 10. 「**完了**」ボタンを選択します。
 
-11. 「場所」ページに、次の通知が表示されます。**2 人のユーザー**が追加されました
+11. 「含む」列に、**2ユーザー** が表示されています。
 
 12. 「**次へ**」ボタンを選択します。
 
-13. 「**コンテンツを保持するか、削除するか、またはその両方を行うかを決定する**」ページで、「**特定の期間のアイテムを保持する**」セクションで、次の情報を入力します。
+13. 「**コンテンツを保持するか、削除するか、または両方を行うかを決定します**」ページで、「**特定の期間のアイテムを保持する**」セクションで、次の情報を入力します。
 
 	- アイテムを特定の期間保持する: 3 年
-	- **保持期間開始の条件**: アイテムが最後に変更されたとき
+	- **保持期間開始の条件**: アイテムの最終変更日時
 
 14. 「**次へ**」ボタンを選択します。
 
@@ -112,19 +112,27 @@ PowerShell を使用して同じ保持ポリシーを作成します
 
 5. 次のコマンドレットを実行して、Teams を除くすべての場所に対する最初の保持ポリシーを作成します。
 
-    `New-RetentionCompliancePolicy -Name "Company Wide PS" -ExchangeLocation All -ModernGroupLocation All -PublicFolderLocation All -SharePointLocation All -OneDriveLocation All`
+    ```
+    New-RetentionCompliancePolicy -Name "Company Wide PS" -ExchangeLocation All -ModernGroupLocation All -PublicFolderLocation All -SharePointLocation All -OneDriveLocation All
+    ```
 
 6. 次のコマンドレットを実行して、保持期間を設定します。単位は、変更日を基準にした日数を使用します。
 	
-    `New-RetentionComplianceRule -Name "Company Wide PS Rule" -Policy "Company Wide PS" -RetentionDuration 1095 -ExpirationDateOption ModificationAgeInDays -RetentionComplianceAction Keep`
+    ```
+    New-RetentionComplianceRule -Name "Company Wide PS Rule" -Policy "Company Wide PS" -RetentionDuration 1095 -ExpirationDateOption ModificationAgeInDays -RetentionComplianceAction Keep
+    ```
 
 7. 次のコマンドレットを実行して、Teams の場所に対する 2 つ目の保持ポリシーを作成します。
 
-    `New-RetentionCompliancePolicy -Name "Teams Retention PS" -TeamsChannelLocation All -TeamsChatLocation "Adele Vance", "Pradeep Gupta"`
+    ```
+    New-RetentionCompliancePolicy -Name "Teams Retention PS" -TeamsChannelLocation All -TeamsChatLocation "Adele Vance", "Pradeep Gupta"
+    ```
 
 8. 次のコマンドレットを実行して、日数を単位として保持期間を設定します。
 
-    `New-RetentionComplianceRule -Name "Teams Retention PS Rule" -Policy "Teams Retention PS" -RetentionDuration 1095 -RetentionComplianceAction Keep`
+    ```
+    New-RetentionComplianceRule -Name "Teams Retention PS Rule" -Policy "Teams Retention PS" -RetentionDuration 1095 -RetentionComplianceAction Keep
+    ```
 
 PowerShell を使って保持期間を 3 年に設定した保持ポリシーを正常に作成しました。
 
