@@ -40,7 +40,7 @@
 
 12. 「**サインイン**」 ウィンドウが表示されたら、JoniS@WWLxZZZZZZ.onmicrosoft.com (ZZZZZZ はラボ ホスティング プロバイダーから支給された固有のテナント ID) としてサインインします。  Joni のパスワードは、管理者と同じです。
 
-13. 次のコマンドレットを使用して、テナントで Azure RMS(Rights Management Service) および IRM(Information Rights Management) がアクティブ化されていることを確認し、**Enter** キーを押します。
+13. 次のコマンドレットを使用して、テナントで Azure RMS(Rights Management Service) および IRM(Information Rights Management) がアクティブ化されていることを確認します。
 
     `Get-IRMConfiguration | fl AzureRMSLicensingEnabled`
 
