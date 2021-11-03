@@ -42,8 +42,16 @@
 
 13. 次のコマンドレットを使用して、テナントで Azure RMS(Rights Management Service) および IRM(Information Rights Management) がアクティブ化されていることを確認します。
 
-    `Get-IRMConfiguration | fl AzureRMSLicensingEnabled`
+    ```
+    Get-IRMConfiguration | fl AzureRMSLicensingEnabled
+    ```
 
+1. 次のコマンドレットを使用して、テナントで使用可能なテンプレートの一覧を核にします。
+
+     ```
+     Get-RMSTemplate
+     ```
+    
 14. Office 365 Message Encryption に使われる Azure RMS テンプレートを次のコマンドレットを使用して、パイロット ユーザー **Megan Bowen** に対してテストします。
 
     `Test-IRMConfiguration -Sender MeganB@contoso.com -Recipient MeganB@contoso.com`
@@ -65,7 +73,7 @@ Exchange Online PowerShell モジュールがインストールされ、テナ�
 
 3. ルール一覧で、**Protect with OMEv2** を選択し、鉛筆アイコンをクリックして編集画面を表示します。
 
-4. 「**このルールを適用する条件**」で「**件名または本文に次の語句が含まれる**」が選択されており、横に「**OEMv2**」が表示されていることを確認します。これは、本文に「OEMv2」という文字列が書かれている場合にこのルールを適用することを意味しています。
+4. 「**このルールを適用する条件**」で「**件名または本文に次の語句が含まれる**」が選択されており、横に「**OMEv2**」が表示されていることを確認します。これは、本文に「OMEv2」という文字列が書かれている場合にこのルールを適用することを意味しています。
 
 5. 「**実行する処理**」で「**次のテンプレートで Office 365 Message Encryption と権利保護をメッセージに適用する**」が選択されており、その横に「**Do Not Forward（転送不可）**」が表示されていることを確認してください。
 
@@ -123,13 +131,13 @@ Exchange Online PowerShell モジュールがインストールされ、テナ�
 
 12. PowerShell は開いたままにします。
 
-財務部のメンバーが外部の受信者にメッセージを送信する際に、カスタム OME テンプレートが自動的に適用される転送ルールが新しく作成しました。
+財務部のメンバーが外部の受信者にメッセージを送信する際に、カスタム OME テンプレートが自動的に適用される転送ルールが新しく作成されました。
 
 ### タスク 5 – カスタム ブランド テンプレートをテストする
 
-新しい、カスタム OME 構成を検証するため、財務チームのメンバーである **Lynne Robbins** のアカウントをもう一度利用する必要があります。
+新しい、カスタム OME 構成を検証するため、財務チームのメンバーである **Lynne Robbins** のアカウントを利用する必要があります。
 
-1. Client 2 VM (LON-CL2) には **lon-cl2\admin** アカウントでログインし、Microsoft 365 には **Lynne Robbins** としてログインしておく必要があります。 
+1. Client 2 VM (LON-CL2) には **lon-cl2\admin** アカウントでログインし、Microsoft 365(https://portal.office.com) には **Lynne Robbins (LynneR@WWLx653641.OnMicrosoft.com)** としてログインしておく必要があります。 
 
 2. outlook で、**New message**を選択します。
 
@@ -145,7 +153,7 @@ Exchange Online PowerShell モジュールがインストールされ、テナ�
 
 7. 「**ソーシャル ID**」と「**ワンタイムパスコード**」によるログインが表示されていることを確認します。「**ワンタイム パスコードを使用してサインイン**」 を選択して、制限時間付きパスコードを受け取ります。
 
-9. 個人用のメール ポータルを開き、「**Your one-time passcode to view the message**」 という件名のメッセージを開きます。
+9. 個人用のメール ボックス開き、「**Your one-time passcode to view the message**」 という件名のメッセージを開きます。
 
 10. パスコードをコピーして、OME ポータルにペーストし、「**Continue**」 を選択します。
 
