@@ -137,7 +137,7 @@ Exchange Online PowerShell モジュールがインストールされ、テナ�
 
 新しい、カスタム OME 構成を検証するため、財務チームのメンバーである **Lynne Robbins** のアカウントを利用する必要があります。
 
-1. Client 2 VM (LON-CL2) には **lon-cl2\admin** アカウントでログインし、Microsoft 365(https://portal.office.com) には **Lynne Robbins (LynneR@WWLx653641.OnMicrosoft.com)** としてログインしておく必要があります。 
+1. Client 2 VM (LON-CL2) には **lon-cl2\admin** アカウントでログインし、Microsoft 365(https://portal.office.com) には **Lynne Robbins (LynneR@みなさんのドメイン.OnMicrosoft.com)** としてログインしておく必要があります。 
 
 2. outlook で、**New message**を選択します。
 
