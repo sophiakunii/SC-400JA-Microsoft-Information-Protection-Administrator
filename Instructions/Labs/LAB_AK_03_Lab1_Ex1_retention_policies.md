@@ -1,4 +1,4 @@
-﻿# ラボ 3 演習 1 - 保持ポリシーを構成する
+# ラボ 3 演習 1 - 保持ポリシーを構成する
 
 この演習では、Contoso Ltd. のシステム管理者である Joni Sherman のロールを実行します。この企業はテキサスを本拠地としており、記録は 3 年を経過したら削除しても違法ではない、という州法を遵守するために保持ポリシーを実装する必要があります。 
 
@@ -11,9 +11,9 @@
 
 1. Client 1 VM (LON-CL1) に **lon-cl1\admin** アカウントでログインします。
 
-2. **Microsoft Edge** で、**https://compliance.microsoft.com** に移動し、**Joni Sherman** JoniS@WWLxZZZZZZ.onmicrosoft.com (ZZZZZZ はラボ ホスティング プロバイダーから提供された固有のテナント ID) としてコンプライアンス センターにログインします。  Joni のパスワードは、ラボ ホスティング プロバイダーから支給されます。
+2. **Microsoft Edge** で、**https://compliance.microsoft.com** に移動し、**Joni Sherman** JoniS@WWLxZZZZZZ.onmicrosoft.com (ZZZZZZ はラボ ホスティング プロバイダーから提供された固有のテナント ID) として Microsoft 365 コンプライアンス ポータルにログインします。  Joni のパスワードは、ラボ ホスティング プロバイダーから支給されます。
 
-3. **コンプライアンス センター**の左側のナビゲーション ペインで「**ポリシー**」を選択し、「**データ**」で「**保持**」を選択します。
+3. **Microsoft 365 コンプライアンス** ポータルの左側のナビゲーション ペインで「**ポリシー**」を選択し、「**データ**」で「**保持**」を選択します。
 
 4. 「**情報ガバナンス**」ページの「**保持**」タブで、「**+ 新しいアイテム保持ポリシー**」を選択します。
 
@@ -24,9 +24,7 @@
 
 6. 「**次へ**」ボタンを選択します。  
 
-1. **作成するアイテム保持ポリシーの種類を選択する** で **静的** を選択し、**次へ** をクリックします。
-
-8. 「**ポリシーを適用する場所を選択する**」領域で、Exchange メール、SharePoint サイト、OneDrive アカウント、 Microsoft 365 グループが選択されていることを確認し、「**次へ**」を選択します。
+7. 「**ポリシーを適用する場所を選択する**」領域で、Exchange メール、SharePoint サイト、OneDrive アカウント、 Microsoft 365 グループが選択されていることを確認し、「**次へ**」を選択します。
 
 8. 「**コンテンツを保持するか、削除するか、または両方を行うかを決定します**」ページで、「**特定の期間アイテムを保持**」セクションで、次の情報を入力します。
 
@@ -47,9 +45,9 @@ Exchange メール、Microsoft 365 グループ、OneDrive、SharePoint サイ�
 
 1. Client 1 VM (LON-CL1) には **lon-cl1\admin** アカウントでログインし、Microsoft 365 には **Joni Sherman** としてログインしておく必要があります。 
 
-2. **Microsoft Edge** で、「Office 365 コンプライアンス センター」タブを開いておく必要があります。そうなっている場合は、それを選択し、次の手順に進みます。閉じてしまった場合は、新しいタブで **https://compliance.microsoft.com** に移動します。
+2. **Microsoft Edge** で、「Microsoft 365 コンプライアンス ポータル」タブを開いておく必要があります。その場合は、それを選択して次の手順に進みます。閉じてしまった場合は、新しいタブで **https://compliance.microsoft.com** に移動します。
 
-3. **コンプライアンス センター**の左側のナビゲーション ペインで「**ポリシー**」を選択し、「**データ**」で「**保持**」を選択します。
+3. **Microsoft 365 コンプライアンス** ポータルの左側のナビゲーション ペインで「**ポリシー**」を選択し、「**データ**」で「**保持**」を選択します。
 
 4. 「**情報ガバナンス**」ページの「**アイテム保持ポリシー**」タブで、「**+ 新しいアイテム保持ポリシー**」を選択します。
 
@@ -59,8 +57,6 @@ Exchange メール、Microsoft 365 グループ、OneDrive、SharePoint サイ�
 	- **説明**: Teams の場所に対する保持
 
 6. 「**次へ**」ボタンを選択します。
-
-1. **作成するアイテム保持ポリシーの種類を選択する** で **静的** を選択し、**次へ** をクリックします。
 
 7. 「**ポリシーを適用する場所の選択**」ページで、次の設定を入力します。
 
@@ -116,27 +112,19 @@ PowerShell を使用して同じ保持ポリシーを作成します
 
 5. 次のコマンドレットを実行して、Teams を除くすべての場所に対する最初の保持ポリシーを作成します。
 
-    ```
-    New-RetentionCompliancePolicy -Name "Company Wide PS" -ExchangeLocation All -ModernGroupLocation All -PublicFolderLocation All -SharePointLocation All -OneDriveLocation All
-    ```
+    `New-RetentionCompliancePolicy -Name "Company Wide PS" -ExchangeLocation All -ModernGroupLocation All -PublicFolderLocation All -SharePointLocation All -OneDriveLocation All`
 
 6. 次のコマンドレットを実行して、保持期間を設定します。単位は、変更日を基準にした日数を使用します。
 	
-    ```
-    New-RetentionComplianceRule -Name "Company Wide PS Rule" -Policy "Company Wide PS" -RetentionDuration 1095 -ExpirationDateOption ModificationAgeInDays -RetentionComplianceAction Keep
-    ```
+    `New-RetentionComplianceRule -Name "Company Wide PS Rule" -Policy "Company Wide PS" -RetentionDuration 1095 -ExpirationDateOption ModificationAgeInDays -RetentionComplianceAction Keep`
 
 7. 次のコマンドレットを実行して、Teams の場所に対する 2 つ目の保持ポリシーを作成します。
 
-    ```
-    New-RetentionCompliancePolicy -Name "Teams Retention PS" -TeamsChannelLocation All -TeamsChatLocation "Adele Vance", "Pradeep Gupta"
-    ```
+    `New-RetentionCompliancePolicy -Name "Teams Retention PS" -TeamsChannelLocation All -TeamsChatLocation "Adele Vance", "Pradeep Gupta"`
 
 8. 次のコマンドレットを実行して、日数を単位として保持期間を設定します。
 
-    ```
-    New-RetentionComplianceRule -Name "Teams Retention PS Rule" -Policy "Teams Retention PS" -RetentionDuration 1095 -RetentionComplianceAction Keep
-    ```
+    `New-RetentionComplianceRule -Name "Teams Retention PS Rule" -Policy "Teams Retention PS" -RetentionDuration 1095 -RetentionComplianceAction Keep`
 
 PowerShell を使って保持期間を 3 年に設定した保持ポリシーを正常に作成しました。
 
