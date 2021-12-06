@@ -8,10 +8,6 @@
 
 1. Client 1 VM (LON-CL1) に **lon-cl1\admin** アカウントでログインしておきます。
 
-```
-この演習は、PC に PowerShell モジュールをインストールしますので、ラボの仮想マシンを使用してください。
-```
-
 2. Windows ボタンを右クリックして、**Windows PowerShell (管理者)** を選択します。
 
 3. 「**ユーザー アカウント制御**」 ウィンドウで、「**はい**」 を選択します。
@@ -42,42 +38,87 @@
 
 13. 次のコマンドレットを使用して、テナントで Azure RMS(Rights Management Service) および IRM(Information Rights Management) がアクティブ化されていることを確認します。
 
-    ```
-    Get-IRMConfiguration | fl AzureRMSLicensingEnabled
-    ```
+    `Get-IRMConfiguration | fl AzureRMSLicensingEnabled`
 
-1. 次のコマンドレットを使用して、テナントで使用可能なテンプレートの一覧を核にします。
-
-     ```
-     Get-RMSTemplate
-     ```
-    
-14. Office 365 Message Encryption に使われる Azure RMS テンプレートを次のコマンドレットを使用して、パイロット ユーザー **Megan Bowen** に対してテストします。
+14. 次のコマンドレットを使用して、Office 365 メッセージ暗号化に使用される Azure RMS テンプレートを他のパイロット ユーザー **Megan Bowen** に対してテストし、**Enter** キーを押します。
 
     `Test-IRMConfiguration -Sender MeganB@contoso.com -Recipient MeganB@contoso.com`
 
     ![IRM 検証スクリプトの結果。 ](../Media/IRMvalidationl.png)
 
-15. すべてのテストが **合格** のステータスであり、エラーが表示されていないことを確認します。
+15. すべてのテストが PASS のステータスであり、エラーが表示されていないことを確認します。
 
 16. PowerShell ウィンドウは開いたままにします。
 
 Exchange Online PowerShell モジュールがインストールされ、テナントに接続し、Azure RMS が正しく機能していることを確認しました。
 
-### タスク 2 - 既存のメールフロー の設定を確認する
-ここでは、既存のメールフローの動作を確認します。
+### タスク 2 - 既定の OME テンプレートを修正する
 
-1. https://admin.exchange.microsoft.com/ にアクセスし、**admin@... ** でログインします。
+組織からは Google や Facebook などの ID プロバイダーへの信頼を制限する要件が出されています。既定では、このようなソーシャル ID は OME で保護されたメッセージにアクセスするためにアクティブ化されるので、組織内のすべてのユーザーに対してソーシャル ID の利用を非アクティブ化する必要があります。  
 
-2. **メールフロー** で **ルール** を選択します
+1. Client 1 VM (LON-CL1) には **lon-cl1\admin** アカウントでログインし、Exchange Online が接続された状態の PowerShell ウィンドウが開いている必要があります。
 
-3. ルール一覧で、**Protect with OMEv2** を選択し、鉛筆アイコンをクリックして編集画面を表示します。
+2. 次のコマンドレットを実行して、既定の OME 構成を閲覧します。
 
-4. 「**このルールを適用する条件**」で「**件名または本文に次の語句が含まれる**」が選択されており、横に「**OMEv2**」が表示されていることを確認します。これは、本文に「OMEv2」という文字列が書かれている場合にこのルールを適用することを意味しています。
+    `Get-OMEConfiguration -Identity "OME Configuration" |fl`
 
-5. 「**実行する処理**」で「**次のテンプレートで Office 365 Message Encryption と権利保護をメッセージに適用する**」が選択されており、その横に「**Do Not Forward（転送不可）**」が表示されていることを確認してください。
+3. 設定を確認して、SocialIdSignIn のパラメーターが「True」に設定されていることを確認します。
 
-6. 「**キャンセル**」をクリックしてウィンドウを閉じます。
+4. 次のコマンドレットを実行し、OME で保護されたテナントからのメッセージにアクセスするためのソーシャル ID の利用を制限します。
+
+    `Set-OMEConfiguration -Identity "OME Configuration" -SocialIdSignIn:$false`
+
+5. 既定のテンプレートをカスタマイズすることに関する警告メッセージを、「はい」を示す「**Y**」で確認し、**Enter** キーを押します。
+
+6. 既定の構成をもう一度確認し、SocialIdSignIn のパラーメーターが「False」に設定されていることを確認します。
+
+    `Get-OMEConfiguration -Identity "OME Configuration" |fl`
+
+7. 結果には、SocialIDSignIn が False に設定されていることが示されていることに注意してください。PowerShell ウィンドウとクライアントは開いたままにします。
+
+Office 365 Message Encryption での Google、Facebook などの海外の ID プロバイダーの利用を非アクティブ化しました。
+
+### タスク 3 - 既定の OME テンプレートをテストする
+
+テナントのユーザーから Office 365 Message Encryption で保護されたメッセージを受信する際は、ソーシャル ID ダイアログが外部の受信者に対して表示されていないことを確認する必要があります。
+
+1.	Client 2 VM (LON-CL2) に **lon-cl2\admin** アカウントでログインします。
+
+2.	タスクバーから **Microsoft Edge** を開き、「**新しい Microsoft Edge へようこそ**」のウインドウが表示されたら、「**完全セットアップ**」を選択します。
+
+3. 「**確認**」を選択して、デフォルトのブラウザー設定を承認したら、「**サインインしないで続行**」します。
+
+4. **Microsoft Edge** で、**https://outlook.office.com** に移動し、LynneR@WWLxZZZZZZ.onmicrosoft.com として Outlook on the web にログインします (ZZZZZZ はラボ ホスティング プロバイダーから支給された固有のテナント ID)。  Lynne Robin のパスワードは、ラボ ホスティング プロバイダーから支給されます。ヒント: 通常、ラボ テナントの MOD 管理者のパスワードと同じです。
+
+5. 「**サインインの状態を維持しますか?**」 ダイアログボックスで、「**今後このメッセージを表示しない**」 チェックボックスを選択し、「**いいえ**」 を選択します。
+
+6. 「**パスワードを保存**」 ダイアログで、「**保存**」 を選択し、ブラウザーにパイロット ユーザーのパスワードを保存します。
+
+7. 「**翻訳元の言語...**」 ウィンドウが表示されたら、下向きの矢印を選択し、「**...からは翻訳しない**」を選択します。
+
+8. Outlook on the web の左上部から「**新規メッセージ**」を選択します。
+
+9. 「**To**」に、テナント ドメインにない、個人用またはその他サード パーティのメール アドレスを入力します。件名に「**秘密のメッセージ**」、本文に「**私の重大な秘密のメッセージ。**」と入力します。
+
+10. 上部のウィンドウから、「**暗号化**」を選択し、メッセージを暗号化します。  メッセージが暗号化されると、メッセージが暗号化された旨を伝える通知が表示されます。
+
+11. 「**送信**」を選択して、メッセージを送信します。
+
+12. 個人用のメール アカウントにサインインし、Lynne Robbins からのメッセージを開きます。  Microsoft アカウント（@outlook.comなど）にこのメールを送った場合、暗号化は自動的に行われる可能性があり、メッセージが自動的に表示されます。  メールを他のメール サービス (@google.com) に送信した場合、暗号化を処理し、メッセージを読むために、次の手順を踏む必要がある可能性があります。
+
+13. 「**メッセージを読む**」を選択します。
+
+14. ソーシャル ID をアクティブ化しなければ、Google アカウントで認証するボタンはありません。
+
+15. 「**ワンタイム パスコードを使用してサインイン**」を選択して、制限時間付きパスコードを受け取ります。
+
+16. 個人用のメール ポータルを開き、「**メッセージを表示するためのワンタイム パスコード**」という件名のメッセージを開きます。
+
+17. パスコードをコピーして、OME ポータルにペーストし、「**続行**」を選択します。
+
+18. 暗号されたメッセージを確認します。
+
+修正された、既定の OME テンプレートを非アクティブ化したソーシャル ID でテストしました。
 
 ### タスク 4 – カスタム ブランド テンプレートを作成し、メールフローに組み込む
 
@@ -87,48 +128,35 @@ Exchange Online PowerShell モジュールがインストールされ、テナ�
 
 2. 次のコマンドレットを実行して、新しい OME 構成を作成します。このコマンドではメッセージの有効期限を設定しています。
 
-   ```
-   New-OMEConfiguration -Identity "Finance Department" -ExternalMailExpiryInDays 7
-   ```
+    `New-OMEConfiguration -Identity "Finance Department" -ExternalMailExpiryInDays 7` 
 
 3. テンプレートをカスタマイズすることに関する警告メッセージに「**Y**」で応答し、**Enter** キーを押します。 
 
 4. 導入のテキストメッセージを次のコマンドレットで変更します。
 
-    ```
-    Set-OMEConfiguration -Identity "Finance Department" -IntroductionText " from Contoso Ltd. finance department has sent you a secure message."
-    ```
+    `Set-OMEConfiguration -Identity "Finance Department" -IntroductionText " from Contoso Ltd. finance department has sent you a secure message."`
 
 5. テンプレートをカスタマイズすることに関する警告メッセージに「**Y**」で応答し、**Enter** キーを押します。
 
 6. メッセージの本文メールテキストを次のコマンドレットで変更します。
 
-    ```
-    Set-OMEConfiguration -Identity "Finance Department" -EmailText "Encrypted message sent from Contoso Ltd. finance department.Handle the content responsibly."
-    ```
+    `Set-OMEConfiguration -Identity "Finance Department" -EmailText "Encrypted message sent from Contoso Ltd. finance department. Handle the content responsibly."`
 
 7. テンプレートをカスタマイズすることに関する警告メッセージに「**Y**」で応答し、**Enter** キーを押します。
 
 8. 免責事項 URL を変更し、Contoso のプライバシーに関する声明のサイトを指し示すようにします。
 
-    ```
-    Set-OMEConfiguration -Identity "Finance Department" -PrivacyStatementURL "https://contoso.com/privacystatement.html"
-    ```
+    `Set-OMEConfiguration -Identity "Finance Department" -PrivacyStatementURL "https://contoso.com/privacystatement.html"`
 
 9. テンプレートをカスタマイズすることに関する警告メッセージに「**Y**」で応答し、**Enter** キーを押します。
 
-10. 次のコマンドレットを実行して、テンプレートの設定を確認します。**SocialIdSignIn** と **OTPEnabled** の両方が **True** であることを確認します。
+10. 次のコマンドレットを使用し、メール フロー ルールを作成します。このメール フロー ルールはカスタム OME テンプレートを財務チームが送信するメッセージすべてに適用します。  この処理は、完了するまでに数秒かかる場合があります。
 
-    ```
-    Get-OMEConfiguration -Identity "Finance Department" |fl
-    ```
+    `New-TransportRule -Name "Encrypt all mails from Finance team" -FromScope InOrganization -FromMemberOf "Finance Team" -ApplyRightsProtectionCustomizationTemplate "Finance Department" -ApplyRightsProtectionTemplate Encrypt`
 
-11. 次のコマンドレットを使用し、**メール フロー ルール**を作成します。この**メール フロー ルール**は財務チームが送信するメッセージすべてにカスタム OME テンプレートを適用します。  この処理は、完了するまでに数秒かかる場合があります。このフロールールにより、財務チームが送信する全てのメッセージは自動的に暗号化されます。
-
-    ```
-    New-TransportRule -Name "Encrypt all mails from Finance team" -FromScope InOrganization -FromMemberOf "Finance Team" -ApplyRightsProtectionCustomizationTemplate "Finance Department" -ApplyRightsProtectionTemplate Encrypt
-    ```
-
+11. 次のコマンドレットを入力し、変更を確認します。
+    `Get-OMEConfiguration -Identity "Finance Department" | Format-List`
+    
 12. PowerShell は開いたままにします。
 
 財務部のメンバーが外部の受信者にメッセージを送信する際に、カスタム OME テンプレートが自動的に適用される転送ルールが新しく作成されました。
@@ -137,27 +165,29 @@ Exchange Online PowerShell モジュールがインストールされ、テナ�
 
 新しい、カスタム OME 構成を検証するため、財務チームのメンバーである **Lynne Robbins** のアカウントを利用する必要があります。
 
-1. Client 2 VM (LON-CL2) には **lon-cl2\admin** アカウントでログインし、Microsoft 365(https://portal.office.com) には **Lynne Robbins (LynneR@みなさんのドメイン.OnMicrosoft.com)** としてログインしておく必要があります。 
+1. Client 2 VM (LON-CL2) には **lon-cl2\admin** アカウントでログインし、Microsoft 365 には **Lynne Robbins** としてログインしておく必要があります。 
 
-2. outlook で、**New message**を選択します。
+3. 左側のナビゲーション ウィンドウで **Outlook** の記号を選択します。
 
-3. 「**To**」 に、テナント ドメインにない、個人用またはその他サード パーティのメール アドレスを入力します。件名に 「**財務レポート**」、本文には 「**秘密の財務情報**」 を入力します。
+4. Outlook on the web の左上部から「**新規メッセージ**」を選択します。
 
-4. 「**Send**」 を選択して、メッセージを送信します。メールが到達するまでに 3 分程度要するかもしれません。
+5. 「**To**」に、テナント ドメインにない、個人用またはその他サード パーティのメール アドレスを入力します。件名に 「*財務レポート*」、本文には「*秘密の財務情報*」を入力します。
 
-5. 個人用のメール アカウントにサインインし、Lynne Robbins からのメッセージを開きます。
+6. 「**送信**」を選択して、メッセージを送信します。
 
-6. 以下の画像のような Lynne Robbins からのメッセージとなるはずです。  「**Read the message**」 を選択します。
+7. 個人用のメール アカウントにサインインし、Lynne Robbins からのメッセージを開きます。
+
+8. 以下の画像のような Lynne Robbins からのメッセージとなるはずです。  「**メッセージを読む**」を選択します。
 
     ![Lynne Robbins からの暗号化されたメールの例](../Media/EncryptedEmail.png)
 
-7. 「**ソーシャル ID**」と「**ワンタイムパスコード**」によるログインが表示されていることを確認します。「**ワンタイム パスコードを使用してサインイン**」 を選択して、制限時間付きパスコードを受け取ります。
+9. 両方のオプションが利用可能となり、カスタマイズした OME 構成がソーシャル ID をアクティブ化されます。「**ワンタイム パスコードを使用してサインイン**」を選択して、制限時間付きパスコードを受け取ります。
 
-9. 個人用のメール ボックス開き、「**Your one-time passcode to view the message**」 という件名のメッセージを開きます。
+10. 個人用のメール ポータルを開き、「**メッセージを表示するためのワンタイム パスコード**」という件名のメッセージを開きます。
 
-10. パスコードをコピーして、OME ポータルにペーストし、「**Continue**」 を選択します。
+11. パスコードをコピーして、OME ポータルにペーストし、「**続行**」を選択します。
 
-11. カスタム ブランドの暗号化されたメッセージを確認します。
+12. カスタム ブランドの暗号化されたメッセージを確認します。
 
 新しくカスタマイズされた OME テンプレートがテストされました。 
 
