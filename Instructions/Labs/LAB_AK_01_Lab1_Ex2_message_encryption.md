@@ -1,4 +1,4 @@
-# ラボ 1 演習 2 - Office 365 Message Encryption を管理する
+﻿# ラボ 1 - 演習 2 - Manage Office 365 Message Encryption
 
 ジョニ・シャーマンがパイロット チームで構成しテストする必要がある最初の設定は、Microsoft 365 の組み込みの Office 365 Message Encryption (OME) です。この目的のために、彼女は既定のテンプレートを変更し、パイロット ユーザーの 1 人に割り当てられる新しいブランド テンプレートを作成します。次に、パイロット ユーザーは各自のアカウントで OME 機能をテストします。
 
@@ -124,7 +124,7 @@ Office 365 Message Encryption での Google、Facebook などの海外の ID プ
 
 組織の財務部が送信する、保護されたメッセージには、カスタマイズした導入や本文、フッターの免責事項のリンクなど、**特別なブランド化**が必要です。財務のメッセージはまた、**7 日経過した後期限切れ**とします。このタスクでは、OME 構成を新しくカスタマイズし、財務部が送信するすべてのメールに対しその OME 構成を適用する転送ルールを作成します。
 
-1. Client 1 VM (LON-CL1) には **lon-cl1\admin** アカウントでログインし、Exchange Online が接続された状態の PowerShell ウィンドウが開いている必要があります。
+1. Client 1 VM (LON-CL1) には **lon-cl1\admin** アカウントでログインします。Exchange Online が接続された状態の PowerShell ウィンドウが開いています。
 
 2. 次のコマンドレットを実行して、新しい OME 構成を作成します。このコマンドではメッセージの有効期限を設定しています。
 
@@ -165,7 +165,7 @@ Office 365 Message Encryption での Google、Facebook などの海外の ID プ
 
 新しい、カスタム OME 構成を検証するため、財務チームのメンバーである **Lynne Robbins** のアカウントを利用する必要があります。
 
-1. Client 2 VM (LON-CL2) には **lon-cl2\admin** アカウントでログインし、Microsoft 365 には **Lynne Robbins** としてログインしておく必要があります。 
+1. Client 2 VM (LON-CL2) には **lon-cl2\admin** アカウントでログインします。Microsoft 365 には **Lynne Robbins** としてログインしておく必要があります。 
 
 3. 左側のナビゲーション ウィンドウで **Outlook** の記号を選択します。
 
@@ -191,4 +191,4 @@ Office 365 Message Encryption での Google、Facebook などの海外の ID プ
 
 新しくカスタマイズされた OME テンプレートがテストされました。 
 
-# 演習 3 に進みます。 
+# ラボ 1 - 演習 3 に進みます。 
