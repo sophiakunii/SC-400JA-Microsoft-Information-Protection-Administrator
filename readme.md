@@ -1,4 +1,13 @@
-﻿# SC-400T00: Microsoft Information Protection 管理者
+**Important Notice!**
+
+This repo was replaced by a [new repo](https://github.com/MicrosoftLearning/SC-400T00A-Microsoft-Information-Protection-Administrator.ja-jp) on December 18th 2021. We're making this change to improve the localized version of this content and reduce the delta between English and localized content updates. 
+After a short interval, this repo will be archived.
+
+**Contributions**
+
+At this time, we are not accepting external contributions to this repo. If you have suggestions or spot any errors, please create a pull request or report an issue on the [new repo](https://github.com/MicrosoftLearning/SC-400T00A-Microsoft-Information-Protection-Administrator.ja-jp).
+
+# SC-400T00: Microsoft Information Protection 管理者
 
 本レポジトリには以下のコースのラボの手順が入っています。
 
