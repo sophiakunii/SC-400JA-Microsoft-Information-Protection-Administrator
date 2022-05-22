@@ -7,6 +7,8 @@
 
 このタスクでは、MSOnline モジュールと SharePoint Online PowerShell モジュールをインストールし、テナントでの秘密度ラベルのサポートを有効にします。
 
+★必ずLON-CL1から操作してください★
+
 1. Client 1 VM (LON-CL1) に **lon-cl1\admin** アカウントでログインします。
 
 2. マウスの右ボタンでスタート メニューを選択して管理者特権で PowerShell ウィンドウを開き、**Windows PowerShell** を選択して管理者として実行します。
