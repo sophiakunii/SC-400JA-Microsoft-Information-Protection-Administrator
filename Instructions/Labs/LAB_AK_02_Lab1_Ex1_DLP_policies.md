@@ -172,9 +172,9 @@ Microsoft Defendger for Cloud Apps におけるファイル監視が有効にな
 
 1. Client 1 VM (LON-CL1) には **lon-cl1\admin** アカウントでログインし、Microsoft 365 には **Joni Sherman** JoniS@WWLxZZZZZZ.onmicrosoft.com (ZZZZZZ はラボ ホスティング プロバイダーから支給された固有のテナント ID) としてログインしておく必要があります。  Joni のパスワードは、ラボ ホスティング プロバイダーから支給されます。
 
-2. **Microsoft Edge** で、「Microsoft Defender for Cloud Apps ポータル」タブを開いておく必要があります。その場合は、それを選択して次の手順に進みます。閉じてしまった場合は、新しいタブで **https://portal.cloudappsecurity.com** に移動します。
+2. **Microsoft Edge** で、新しいタブで **https://security.microsoft.com** に移動します。
 
-3. **Microsoft Defender for Cloud Apps** ポータルの左側のナビゲーション ウィンドウで、「**制御**」を展開し、「**ポリシー**」を選択します。
+3. **Microsoft 365 Defender** ポータルの左側のナビゲーション ウィンドウで、「**クラウドアプリ**」を展開し、「**ポリシー**」をクリックし、「**ポリシー管理**」を選択します。
 
 4. 「**ポリシー**」ページで、「**+ ポリシーの作成**」を展開してから、「**ファイル ポリシー**」を選択します。
 
@@ -201,6 +201,8 @@ Microsoft Defendger for Cloud Apps におけるファイル監視が有効にな
 OneDrive と SharePoint に保存されたファイルを継続的にスキャンしてクレジット カード情報を探し、組織内で共有されている場合検疫を行うファイル ポリシーが作成されました。
 
 ### タスク 8 - PowerPlatform に DLP ポリシーを作成する
+
+★本タスクは割愛してください★
 
 会社では Power Automate のフローを用いて、データを SharePoint Online と SalesForce で共有します。このタスクでは、既存のフローを続行させつつ、SharePoint Online とビジネス以外として定義されたアプリとの間でデータを共有するフローの作成を防止する、PowerPlatform 向けの DLP ポリシーを作成します。
 
